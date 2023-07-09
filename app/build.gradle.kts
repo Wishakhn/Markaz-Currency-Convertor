@@ -1,7 +1,9 @@
 plugins {
     id(BuildPluginConfigs.androidApplication)
-    kotlin(BuildPluginConfigs.kotlinAndroid)
-    id("kotlin-android")
+    id(BuildPluginConfigs.jetbrains)
+    id(BuildPluginConfigs.ksp)
+  //  id("org.jetbrains.kotlin.plugin.serialization")
+
 }
 
 android {
@@ -31,15 +33,15 @@ android {
         compose = true
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     composeOptions {
         kotlinCompilerExtensionVersion = ComposeVersion.COMPOSE_COMPILER
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildTypes {
         release {
@@ -63,12 +65,15 @@ android {
 
 
 dependencies {
-    implemGrentKotlinDependencies()
-    implementDiDependencies()
-    implementComposeDependencies()
-    //ksp(ComposeDependencies.COMPOSE_NAV_KSP)
-    implementation(LocalStorageDependencies.ANDROID_DATA_STORE)
     implementAndroidXDependencies()
-    implementAccompanistDependencies()
-    implementKtorAndroidDependencies()
+    implementation(platform(KotlinDependencies.KOTLIN_BOM))
+    implementation(ComposeDependencies.COMPOSE_ACTIVITY)
+    implementation(platform(ComposeDependencies.COMPOSE_BOM))
+    implementation(ComposeDependencies.COMPOSE_MATERIAL)
+    implementation(ComposeDependencies.COMPOSE_WINDOW_SIZE)
+    ksp(ComposeDependencies.COMPOSE_NAV_KSP)
+    //  ksp("androidx.room:room-compiler:2.5.0")
+    implementComposeDependencies()
+    testDependencies()
+    androidTestImplementation(platform(ComposeDependencies.COMPOSE_BOM))
 }

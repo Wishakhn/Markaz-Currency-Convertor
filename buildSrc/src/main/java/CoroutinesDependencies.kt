@@ -14,4 +14,4 @@ object CoroutinesDependencies {
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${CoroutinesVersion.COROUTINE_VERSION}"
 }
 
-fun DependencyHandler.implementCoroutineDependencies() = implementation(coroutinesDependencies)
+fun DependencyHandler.implementCoroutineDependencies() = implementations(coroutinesDependencies)

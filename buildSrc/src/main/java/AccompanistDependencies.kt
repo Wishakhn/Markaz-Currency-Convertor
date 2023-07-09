@@ -25,4 +25,4 @@ object AccompanistDependencies {
         "com.google.accompanist:accompanist-permissions:${ComposeVersion.COMPOSE_PERMISSIONS}"
 }
 
-fun DependencyHandler.implementAccompanistDependencies() = implementation(accompanistDependencies)
+fun DependencyHandler.implementAccompanistDependencies() = implementations(accompanistDependencies)

@@ -50,4 +50,4 @@ object LocalStorageDependencies {
     const val ANDROID_DATA_STORE = "androidx.datastore:datastore-preferences:${DataVersion.AND_DATA_STORE}"
 }
 
-fun DependencyHandler.implementKtorAndroidDependencies() = implementation(androidDataDependencies)
+fun DependencyHandler.implementKtorAndroidDependencies() = implementations(androidDataDependencies)

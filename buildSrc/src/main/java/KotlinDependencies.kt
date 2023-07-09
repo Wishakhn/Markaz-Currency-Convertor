@@ -10,9 +10,9 @@ object KotlinDependencies {
         "org.jetbrains.kotlin:kotlin-reflect:${KotlinVersion.STANDARD_LIBRARY}"
     const val KOTLIN_STD_LIB =
         "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${KotlinVersion.STANDARD_LIBRARY}"
-    const val KMM_MOKO = "dev.icerock.moko:mvvm-core:${KotlinVersion.MOKO}"
     const val KOTLINX_SERIALISATION = "org.jetbrains.kotlinx:kotlinx-serialization-core:${KotlinVersion.KOTLINX}"
+    const val KOTLIN_BOM = "org.jetbrains.kotlin:kotlin-bom:${KotlinVersion.KOTLIN}"
 }
 
-fun DependencyHandler.implementKotlinDependencies() = implementation(kotlinDependencies)
+fun DependencyHandler.implementKotlinDependencies() = implementations(kotlinDependencies)
 

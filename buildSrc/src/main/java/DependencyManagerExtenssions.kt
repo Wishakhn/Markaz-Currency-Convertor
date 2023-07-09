@@ -6,29 +6,29 @@ import org.gradle.api.initialization.dsl.ScriptHandler
 //util functions for adding the different type dependencies from build.gradle file
 fun DependencyHandler.kapt(list: List<String>) {
     list.forEach { dependency ->
-        add("dependencies.kapt", dependency)
+        add("kapt", dependency)
     }
 }
 
-fun DependencyHandler.implementation(list: List<String>) {
+fun DependencyHandler.implementations(list: List<String>) {
     list.forEach { dependency ->
-        add("dependencies.implementation", dependency)
+        add("implementation", dependency)
     }
 }
 
 fun DependencyHandler.androidTestImplementation(list: List<String>) {
     list.forEach { dependency ->
-        add("dependencies.androidTestImplementation", dependency)
+        add("androidTestImplementation", dependency)
     }
 }
 
 fun DependencyHandler.androidTestImplementation(dependency: String) {
-    add("dependencies.androidTestImplementation", dependency)
+    add("androidTestImplementation", dependency)
 }
 
 fun DependencyHandler.testImplementation(list: List<String>) {
     list.forEach { dependency ->
-        add("dependencies.testImplementation", dependency)
+        add("testImplementation", dependency)
     }
 }
 
@@ -45,11 +45,11 @@ fun DependencyHandler.classpath(list: List<String>) {
 }
 
 fun DependencyHandler.testImplementation(dependency: String) {
-    add("dependencies.testImplementation", dependency)
+    add("testImplementation", dependency)
 }
 
 fun DependencyHandler.testRuntimeOnly(dependency: String) {
-    add("dependencies.testRuntimeOnly", dependency)
+    add("testRuntimeOnly", dependency)
 }
 
 /**
@@ -60,7 +60,7 @@ fun DependencyHandler.testRuntimeOnly(dependency: String) {
  * @return the dependency
  */
 fun DependencyHandler.debugImplementation(dependencyNotation: String): Dependency? =
-    add("dependencies.debugImplementation", dependencyNotation)
+    add("debugImplementation", dependencyNotation)
 
 /**
  * Adds a dependency to the `dependencies.implementation` configuration.
@@ -70,7 +70,7 @@ fun DependencyHandler.debugImplementation(dependencyNotation: String): Dependenc
  * @return the dependency
  */
 fun DependencyHandler.implementation(dependencyNotation: String): Dependency? =
-    add("dependencies.implementation", dependencyNotation)
+    add("implementation", dependencyNotation)
 
 /**
  * Adds a dependency to the `dependencies.api` configuration.
@@ -81,7 +81,7 @@ fun DependencyHandler.implementation(dependencyNotation: String): Dependency? =
  */
 
 fun DependencyHandler.api(dependencyNotation: String): Dependency? =
-    add("dependencies.api", dependencyNotation)
+    add("api", dependencyNotation)
 
 /**
  * Adds a dependency to the `dependencies.kapt` configuration.
@@ -91,4 +91,4 @@ fun DependencyHandler.api(dependencyNotation: String): Dependency? =
  * @return the dependency
  */
 fun DependencyHandler.kapt(dependencyNotation: String): Dependency? =
-    add("dependencies.kapt", dependencyNotation)
+    add("kapt", dependencyNotation)

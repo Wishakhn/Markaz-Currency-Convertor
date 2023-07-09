@@ -20,4 +20,4 @@ object DiDependencies {
     const val KOIN_NAVIGATION = "io.insert-koin:koin-androidx-navigation:${KoinVersion.KOIN_ANDROID}"
 }
 
-fun DependencyHandler.implementDiDependencies() = implementation(androidDiDependencies)
+fun DependencyHandler.implementDiDependencies() = implementations(androidDiDependencies)
