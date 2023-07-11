@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">Markaz Currency Convertor</string>
+    <string name="splash_note">Exchange any currency in a few simple steps.</string>
+    <string name="splash_subtitle">Trusted &amp; Secure Currency Convertor</string>
+    <string name="auth_login_title">Login</string>
+    <string name="auth_login_note">Hey! Welcome Buddy.</string>
+    <string name="auth_login_create_account">Create a new account.</string>
+    <string name="auth_signup_title">Sign Up</string>
+    <string name="auth_signup_note">New Here! No Worries.</string>
+    <string name="auth_email">Email</string>
+    <string name="auth_password">Password</string>
+    <string name="auth_c_password">Confirm Password</string>
+    <string name="auth_username">Full Name</string>
+    <string name="auth_username_hint">Please enter your full name.</string>
+    <string name="auth_email_hint">Please enter your email.</string>
+    <string name="auth_password_hint">Please enter your password.</string>
+    <string name="auth_c_password_hint">Please re-enter your password.</string>
+    <string name="graph">Currency Graph</string>
+    <string name="currency_convert_title">Currency Convertor</string>
+    <string name="multi_currency_convertor_title">Multiple Currency Convertor</string>
+    <string name="next">Next</string>
+    <string name="start">Lets Go!</string>
+    <string name="back">Back</string>
+    <string name="help">Ask Question?</string>
+    <string name="finance_calculator">Finance Calculator</string>
+
 </resources>
