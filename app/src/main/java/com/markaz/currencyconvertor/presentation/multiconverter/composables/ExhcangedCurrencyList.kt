@@ -13,7 +13,10 @@ import androidx.compose.ui.Modifier
 import com.markaz.currencyconvertor.presentation.multiconverter.CCEffect
 import com.markaz.currencyconvertor.presentation.multiconverter.CCEvent
 import com.markaz.currencyconvertor.presentation.multiconverter.CCStateModel
+import com.markaz.currencyconvertor.ui.composables.atoms.a_TextBodyLarge
+import com.markaz.currencyconvertor.ui.composables.atoms.a_TextDisplayMedium
 import com.markaz.currencyconvertor.utils.extenssions.collectAsState
+import com.markaz.currencyconvertor.utils.extenssions.roundToThreeDeci
 import com.markaz.currencyconvertor.utils.interfaces.IStateEffectProcessor
 import ir.kaaveh.sdpcompose.sdp
 
@@ -37,13 +40,13 @@ fun ExhcangedCurrencyList(
                     .wrapContentWidth()
                     .padding(bottom = 3.sdp)
             ) {
-                CaptionText(
+                a_TextDisplayMedium(
                     text = item.currencyCode, modifier = Modifier
                         .wrapContentSize()
                         .padding(end = 10.sdp)
                 )
 
-                BodyText(
+                a_TextBodyLarge(
                     text = item.exchangeRate.roundToThreeDeci().toString(), modifier = Modifier
                         .wrapContentSize()
                 )
