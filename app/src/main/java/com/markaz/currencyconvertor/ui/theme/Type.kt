@@ -3,7 +3,6 @@ package com.markaz.currencyconvertor.ui.theme
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import ir.kaaveh.sdpcompose.ssp
@@ -19,7 +18,7 @@ val mccTypography: Typography
             fontSize = 24.ssp,
             lineHeight = 32.ssp,
             letterSpacing = 1.ssp,
-            color = colorAccent
+            color = colorWhite
         ),
         titleLarge = TextStyle(
             fontFamily = boldLato,
@@ -27,7 +26,7 @@ val mccTypography: Typography
             fontSize = 18.ssp,
             lineHeight = 28.ssp,
             letterSpacing = 0.7.sp,
-            color = colorSecondary
+            color = colorPrimaryTeal
         ),
         headlineLarge = TextStyle(
             fontFamily = boldLato,
@@ -86,7 +85,7 @@ val mccTypography: Typography
             color = colorDarkGrey
         ),
         headlineSmall = TextStyle(
-            fontFamily = thinLato,
+            fontFamily = regularLato,
             fontWeight = FontWeight.Light,
             fontSize = 11.ssp,
             lineHeight = 17.sp,
@@ -102,11 +101,11 @@ val mccTypography: Typography
             color = colorSecondary
         ),
         displaySmall = TextStyle(
-            fontFamily = thinLato,
+            fontFamily = regularLato,
             fontWeight = FontWeight.Light,
             fontSize = 10.ssp,
             lineHeight = 15.ssp,
             letterSpacing = 0.5.sp,
-            color = colorDarkGrey
+            color = colorCharcoal
         )
     )

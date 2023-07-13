@@ -62,6 +62,9 @@ val currencyConvertTitle: String
 val multiCurrencyConvertorTitle: String
     @Composable
     get() = stringResource(id = R.string.multi_currency_convertor_title)
+val singleCurrencyConvertorTitle: String
+    @Composable
+    get() = stringResource(id = R.string.single_currency_convertor_title)
 val next: String
     @Composable
     get() = stringResource(id = R.string.next)

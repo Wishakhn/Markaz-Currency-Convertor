@@ -2,7 +2,7 @@ plugins {
     id(BuildPluginConfigs.androidApplication)
     id(BuildPluginConfigs.jetbrains)
     id(BuildPluginConfigs.ksp)
-  //  id("org.jetbrains.kotlin.plugin.serialization")
+    //  id("org.jetbrains.kotlin.plugin.serialization")
 
 }
 
@@ -71,9 +71,14 @@ dependencies {
     implementation(platform(ComposeDependencies.COMPOSE_BOM))
     implementation(ComposeDependencies.COMPOSE_MATERIAL)
     implementation(ComposeDependencies.COMPOSE_WINDOW_SIZE)
-    ksp(ComposeDependencies.COMPOSE_NAV_KSP)
-    //  ksp("androidx.room:room-compiler:2.5.0")
     implementComposeDependencies()
+    ksp(ComposeDependencies.COMPOSE_NAV_KSP)
+    ksp(RoomDependencies.ROOM_COMPILER)
+    implementKtorAndroidDependencies()
+    implementDataStoreDependencies()
+    implementDiDependencies()
+    implementRoomDependencies()
     testDependencies()
     androidTestImplementation(platform(ComposeDependencies.COMPOSE_BOM))
+    implementation("androidx.window:window:1.0.0")
 }

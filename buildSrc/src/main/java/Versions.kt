@@ -23,6 +23,8 @@ object ComposeVersion {
     const val COMPOSE_VM = "2.6.1"
     const val COMPOSE_PERMISSIONS = "0.21.1-beta"
     const val COMPOSE_DESTINATION = "1.8.42-beta"
+    const val COIL = "2.4.0"
+    const val CALCULATOR = "0.8.0"
 
 }
 object AccompanistVersion{
@@ -34,22 +36,22 @@ object AccompanistVersion{
 object KoinVersion {
     const val KOIN_ANDROID = "3.2.3"
     const val KOIN = "3.2.2"
-    const val KOIN_COMPOSE = "3.2.1"
+    const val KOIN_COMPOSE = "3.4.4"
     const val KOIN_KTOR = "3.2.2"
 }
 
 object DataVersion {
-    const val KTOR_CORE = "2.1.0"
+    const val KTOR_CORE = "2.1.2"
     const val KTOR_CLIENT_ANDROID = KTOR_CORE
     const val KTOR_IOS = KTOR_CORE
     const val KTOR_CONTENT_NEGOTIATION = KTOR_CORE
-    const val KOTLINX_SERIALIZATION_GSON = "1.4.0-RC"
+    const val KOTLINX_SERIALIZATION_GSON = "1.0.1"
     const val KTOR_CLIENT_OKHTTP = KTOR_CORE
     const val KTOR_CLIENT_DARWIN = KTOR_CORE
     const val KTOR_CLIENT_AUTH = "2.0.3"
-    const val REALM = "1.0.1"
     const val DTATA_STORE = "1.1.0-dev01"
     const val AND_DATA_STORE = "1.0.0"
+    const val ROOM_VERSION = "2.5.0"
 }
 
 object KotlinVersion {
@@ -79,7 +81,7 @@ object PluginVersion{
     const val BUILD_GRADLE = "8.0.0"
     const val NAVIGATION = "2.3.5"
     const val KT_LINT = "10.0.0"
-    const val SERIALISATION = KotlinVersion.STANDARD_LIBRARY
+    const val SERIALISATION = "1.6.21"
     const val KSP = "1.7.10-1.0.6"
     const val JUNIT_5_GRADLE = "1.8.2.1"
 }

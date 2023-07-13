@@ -18,6 +18,7 @@
     <string name="graph">Currency Graph</string>
     <string name="currency_convert_title">Currency Convertor</string>
     <string name="multi_currency_convertor_title">Multiple Currency Convertor</string>
+    <string name="single_currency_convertor_title">Single Currency Convertor</string>
     <string name="next">Next</string>
     <string name="start">Lets Go!</string>
     <string name="back">Back</string>

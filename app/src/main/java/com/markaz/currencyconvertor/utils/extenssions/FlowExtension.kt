@@ -1,4 +1,4 @@
-package com.markaz.currencyconvertor.utils.extenssions
+package com.markaz.currencyconvertor.ui.theme.utils.extenssions
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
