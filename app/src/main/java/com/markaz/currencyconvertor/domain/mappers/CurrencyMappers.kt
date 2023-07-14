@@ -10,7 +10,7 @@ import com.markaz.currencyconvertor.domain.models.ExchangeRateModel
 
 fun ExchangeRateResponse.toExchangeRate() = ExchangeRateModel(
     base ?: "", rates?.map { ExchangeRate(it.key, it.value) } ?: listOf(),
-    error = error
+    error = if (rates.isNullOrEmpty()) "Opps something went wrong" else ""
 )
 
 fun CurrencyResponse.toCurrencyList() = CurrencyModel(

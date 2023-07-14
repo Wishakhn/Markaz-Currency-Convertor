@@ -3,13 +3,14 @@ package com.markaz.currencyconvertor.utils.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.markaz.currencyconvertor.utils.extenssions.stateEffectProcessor
+import com.markaz.currencyconvertor.utils.helpers.FlowStateProcessorImpl
 import com.markaz.currencyconvertor.utils.interfaces.IBaseEffects
 import com.markaz.currencyconvertor.utils.interfaces.IBaseEvents
 import com.markaz.currencyconvertor.utils.interfaces.IBaseStateModel
 import com.markaz.currencyconvertor.utils.interfaces.IEffect
 import com.markaz.currencyconvertor.utils.interfaces.IStateEffectProcessor
 import com.markaz.currencyconvertor.utils.interfaces.Intent
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -69,5 +70,23 @@ abstract class BaseViewModel<Event : IBaseEvents, State : IBaseStateModel, Effec
         val effectValue = builder()
         viewModelScope.launch { _effect.send(effectValue) }
     }
+
+    fun <EV : Any, ST : Any, PA : Intent<ST>, EF : Any> stateEffectProcessor(
+        defViewState: ST,
+        prepare: suspend (IEffect<EF>) -> Flow<PA> = { emptyFlow() },
+        statesEffects: suspend (IEffect<EF>, EV) -> Flow<PA> = { _, _ -> emptyFlow() }
+    ): IStateEffectProcessor<EV, ST, EF> = viewModelScope.stateEffectProcessor(
+        defViewState,
+        prepare,
+        statesEffects
+    )
+
+
+    fun <EV : Any, ST : Any, PA : Intent<ST>, EF : Any> CoroutineScope.stateEffectProcessor(
+        defViewState: ST,
+        prepare: suspend (IEffect<EF>) -> Flow<PA> = { emptyFlow() },
+        statesEffects: suspend (IEffect<EF>, EV) -> Flow<PA> = { _, _ -> emptyFlow() },
+    ): IStateEffectProcessor<EV, ST, EF> =
+        FlowStateProcessorImpl(this, defViewState, prepare, statesEffects)
 
 }

@@ -1,17 +1,15 @@
 package com.markaz.currencyconvertor.presentation.converter
 
 import androidx.lifecycle.viewModelScope
-import com.markaz.currencyconvertor.utils.network.ResponseResource
 import com.markaz.currencyconvertor.domain.usecases.FetchCurrenciesUseCase
 import com.markaz.currencyconvertor.domain.usecases.FetchExchangeRateUseCase
 import com.markaz.currencyconvertor.utils.base.BaseViewModel
 import com.markaz.currencyconvertor.utils.extenssions.thenNoAction
 import com.markaz.currencyconvertor.utils.interfaces.IEffect
 import com.markaz.currencyconvertor.utils.interfaces.Intent
+import com.markaz.currencyconvertor.utils.network.ResponseResource
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 
@@ -33,18 +31,21 @@ class CurrencyViewModel(
                     event.isEnabled
                 )
             )
+
             is CCEvent.UpdateCurrencyApiState -> flowOf(
                 CurrencyStateReducer.UpdateCurrencyApiState(
-                    event.apiState,
-                    event.data
+                    state = event.state,
+                    data = event.data,
                 )
             )
+
             is CCEvent.UpdateExchangeRateApiState -> flowOf(
                 CurrencyStateReducer.UpdateExchangeRateApiState(
                     event.apiState,
                     event.data
                 )
             )
+
             is CCEvent.ConvertCurrencyRate -> flowOf(
                 CurrencyStateReducer.ExchangeRateListForSelectedCurrency(
                     amount = event.amount?.toDouble(),
@@ -53,31 +54,40 @@ class CurrencyViewModel(
                     baseCurrency = event.exchangeRateResponse.base
                 )
             )
-            is CCEvent.UpdateSelectedCurrency -> flowOf(CurrencyStateReducer.UpdateSelectedCurrency(event.selectedCurrency))
-            else -> emptyFlow()
+
+            is CCEvent.UpdateSelectedCurrency -> flowOf(
+                CurrencyStateReducer.UpdateSelectedCurrency(
+                    event.selectedCurrency
+                )
+            )
         }
     }
 
     private fun fetchCurrencies() =
         viewModelScope.launch {
-            currencyUseCase.buildRequest().onStart { }.collect {
+            setEvent(
+                CCEvent.UpdateCurrencyApiState(
+                    state = PostsState.Loading(true)
+                )
+            )
+            currencyUseCase().collect {
                 when (it) {
                     is ResponseResource.Success -> {
                         // Set State
                         setEvent(
                             CCEvent.UpdateCurrencyApiState(
-                                PostsState.Success(it.data),
-                                it.data
+                                state = PostsState.Loading(false),
+                                data = it.data
                             )
                         )
                     }
+
                     is ResponseResource.Error -> {
                         // Set Effect
                         setEvent(
                             CCEvent.UpdateCurrencyApiState(
-                                PostsState.Error(
-                                    it.error.message
-                                )
+                                state = PostsState.Loading(false),
+                                error = it.errorMessage.error?.message
                             )
                         )
 
@@ -87,25 +97,25 @@ class CurrencyViewModel(
         }
 
     private fun fetchExchangeRates() = viewModelScope.launch {
-        exchangeUseCase.buildRequest().collect {
+        exchangeUseCase().collect {
             when (it) {
                 is ResponseResource.Success -> {
                     // Set State
                     setEvent(
                         CCEvent.UpdateExchangeRateApiState(
-                            PostsState.Success(it.data),
+                            apiState = PostsState.Loading(false),
                             data = it.data
                         )
                     )
 
                 }
+
                 is ResponseResource.Error -> {
                     // Set Effect
                     setEvent(
                         CCEvent.UpdateExchangeRateApiState(
-                            PostsState.Error(
-                                it.error.message ?: ""
-                            )
+                            apiState = PostsState.Loading(false),
+                            error = it.errorMessage.error
                         )
                     )
 

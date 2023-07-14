@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class FetchExchangeRateUseCase(private val repository: ICurrencyConverterRespo) {
-    suspend fun buildRequest(): Flow<ResponseResource<ExchangeRateModel>> = flow {
+    suspend operator fun invoke(): Flow<ResponseResource<ExchangeRateModel>> = flow {
         repository.getLatestExchangeRates().collect {
             when (it) {
                 is ResponseResource.Success -> emit(ResponseResource.success(it.data.toExchangeRate()))

@@ -3,45 +3,20 @@ package com.markaz.currencyconvertor.presentation.activities
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.activity.viewModels
+import com.markaz.currencyconvertor.presentation.splash.SplashViewModel
+import com.markaz.currencyconvertor.presentation.welcome.WelcomeViewModel
+import com.markaz.currencyconvertor.presentation.welcome.composables.WelcomeScreen
 import com.markaz.currencyconvertor.ui.theme.MCCTheme
 
 class WelcomeActivity : ComponentActivity() {
+    private val viewModel: WelcomeViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MCCTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-
-                ) {
-                    Greetings("Android")
-                }
+                WelcomeScreen(viewModel)
             }
         }
-    }
-}
-
-@Composable
-fun Greetings(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreviews() {
-    MCCTheme {
-        Greetings("Android")
     }
 }

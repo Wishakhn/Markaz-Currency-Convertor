@@ -3,19 +3,16 @@ package com.markaz.currencyconvertor.presentation.splash
 import com.markaz.currencyconvertor.utils.interfaces.IBaseEffects
 import com.markaz.currencyconvertor.utils.interfaces.IBaseEvents
 import com.markaz.currencyconvertor.utils.interfaces.IBaseStateModel
+import com.markaz.currencyconvertor.utils.network.NetworkStatus
 
-sealed class DetailEffect : IBaseEffects {
-    object NavigateBack : DetailEffect()
+sealed class SplashEvent : IBaseEvents {
+    object NavigateToNext : SplashEvent()
 }
 
-
-sealed class DetailEvent : IBaseEvents {
-    object NavigateBack : DetailEvent()
-    data class FetchRecipeDetails(val id: Int) : DetailEvent()
+sealed class SplashEffect : IBaseEffects {
+    object NavigateToNext : SplashEffect()
 }
 
-data class DetailStateModel(
-    val idel: String = "",
-    val loading: Boolean = false,
-    val error: String? = null,
+data class SplashStateModel(
+    val isInternetConnected: NetworkStatus = NetworkStatus.Unavailable
 ) : IBaseStateModel

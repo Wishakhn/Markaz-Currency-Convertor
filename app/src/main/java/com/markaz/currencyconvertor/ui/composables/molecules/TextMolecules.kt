@@ -35,13 +35,6 @@ fun TextWithIcon(
     Row(
         modifier = Modifier
             .wrapContentSize()
-            .shadow(
-                elevation = 20.sdp,
-                RoundedCornerShape(8.sdp),
-                spotColor = colorPrimaryPeach
-            )
-            .background(colorWhite, RoundedCornerShape(8.sdp))
-
             .then(modifier),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center

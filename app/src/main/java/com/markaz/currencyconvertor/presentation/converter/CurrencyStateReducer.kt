@@ -10,10 +10,18 @@ sealed class CurrencyStateReducer : Intent<CCStateModel> {
         CurrencyStateReducer() {
         override fun reduce(oldState: CCStateModel): CCStateModel {
             return when (state) {
-                is PostsState.Idle -> oldState.copy(
-                    apiState = state,
-                    currencyResponse = data
-                )
+                is PostsState.Loading -> {
+                    if (state.isLoading) {
+                        oldState.copy(
+                            isLoading = state.isLoading,
+                            apiState = state
+                        )
+                    } else oldState.copy(
+                        apiState = state,
+                        currencyResponse = data,
+                        isLoading = state.isLoading
+                    )
+                }
 
                 else -> oldState.copy(apiState = state)
             }
@@ -25,10 +33,17 @@ sealed class CurrencyStateReducer : Intent<CCStateModel> {
         CurrencyStateReducer() {
         override fun reduce(oldState: CCStateModel): CCStateModel {
             return when (state) {
-                is PostsState.Idle -> oldState.copy(
-                    apiState = state,
-                    exchangerateResponse = data
-                )
+                is PostsState.Loading -> {
+                    if (state.isLoading) {
+                        oldState.copy(
+                            isLoading = true,
+                            apiState = state
+                        )
+                    } else oldState.copy(
+                        apiState = state,
+                        exchangerateResponse = data
+                    )
+                }
 
                 else -> oldState.copy(apiState = state)
             }

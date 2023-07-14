@@ -10,15 +10,19 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.constraintlayout.compose.ConstraintLayout
+import com.markaz.currencyconvertor.navigation.destinations.WelcomeDestinations
+import com.markaz.currencyconvertor.presentation.welcome.WelcomeEvent
+import com.markaz.currencyconvertor.presentation.welcome.WelcomeViewModel
 import com.markaz.currencyconvertor.ui.composables.atoms.a_ButtonSmall
 import com.markaz.currencyconvertor.ui.theme.colorGradientBlackBlue
 import com.markaz.currencyconvertor.ui.theme.colorGradientLightBlue
 import com.markaz.currencyconvertor.ui.theme.start
 import ir.kaaveh.sdpcompose.sdp
+import org.koin.androidx.compose.getViewModel
 
 @Preview
 @Composable
-fun WelcomeScreen() = ConstraintLayout(
+fun WelcomeScreen(viewModel: WelcomeViewModel = getViewModel()) = ConstraintLayout(
     modifier = Modifier
         .fillMaxSize()
         .background(
@@ -32,6 +36,7 @@ fun WelcomeScreen() = ConstraintLayout(
             )
         )
 ) {
+    val processor = viewModel.getStateProcessor()
     val (icon, title, subtitle, note, button, texture) = createRefs()
     BorderWelcome(Modifier.constrainAs(texture) {
         linkTo(parent.start, parent.end)
@@ -73,10 +78,11 @@ fun WelcomeScreen() = ConstraintLayout(
                 linkTo(parent.start, parent.end)
                 top.linkTo(note.bottom)
                 bottom.linkTo(parent.bottom)
-            }.clickable {
-
+            }
+            .clickable {
+                processor.sendEvent(WelcomeEvent.NavigateToNext)
             },
         title = start
     )
-
+    WelcomeDestinations(viewModel = viewModel)
 }

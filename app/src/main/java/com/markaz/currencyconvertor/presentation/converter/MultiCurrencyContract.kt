@@ -10,13 +10,15 @@ import com.markaz.currencyconvertor.utils.interfaces.IBaseStateModel
 sealed class CCEvent : IBaseEvents {
     data class EnableButton(val amount: String?, val isEnabled: Boolean) : CCEvent()
     data class UpdateCurrencyApiState(
-        val apiState: PostsState,
-        val data: CurrencyModel? = null
+        val state: PostsState,
+        val data: CurrencyModel? = null,
+        val error : String?  = ""
     ) : CCEvent()
 
     data class UpdateExchangeRateApiState(
         val apiState: PostsState,
-        val data: ExchangeRateModel? = null
+        val data: ExchangeRateModel? = null,
+        val error : String?  = ""
     ) : CCEvent()
 
     data class UpdateSelectedCurrency(val selectedCurrency: String) : CCEvent()
@@ -36,7 +38,7 @@ sealed class CCEffect : IBaseEffects {
 
 sealed class PostsState {
     object Idle : PostsState()
-    object Loading : PostsState()
+    data class Loading(val isLoading : Boolean = false) : PostsState()
 }
 
 data class CCStateModel(
@@ -46,5 +48,6 @@ data class CCStateModel(
     val exchangerateResponse: ExchangeRateModel? = null,
     val amount: String? = null,
     val exchangeRate: List<ExchangeRate>? = listOf(),
-    val selectedCurrency: String = "AED"
+    val selectedCurrency: String = "AED",
+    val isLoading: Boolean = false
 ) : IBaseStateModel

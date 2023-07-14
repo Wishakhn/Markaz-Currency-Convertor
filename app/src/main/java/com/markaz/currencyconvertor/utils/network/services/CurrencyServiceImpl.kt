@@ -1,8 +1,6 @@
 package com.markaz.currencyconvertor.utils.network.services
 
-import com.markaz.currencyconvertor.data.remote.CurrencyResponse
 import com.markaz.currencyconvertor.data.remote.ExchangeRateResponse
-import com.markaz.currencyconvertor.utils.network.ApiError
 import com.markaz.currencyconvertor.utils.network.ResponseResource
 import com.markaz.currencyconvertor.utils.network.URL_GET_CURRENCIES
 import com.markaz.currencyconvertor.utils.network.URL_GET_RATES
@@ -11,38 +9,36 @@ import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
-import io.ktor.client.request.setBody
 
-class CurrencyServiceImpl(private val client: HttpClient) : ICurrencyConverterApi{
+class CurrencyServiceImpl(private val client: HttpClient) : ICurrencyConverterApi {
 
-    override suspend fun getCurrencies(): ResponseResource<CurrencyResponse> = try {
+    override suspend fun getCurrencies(): ResponseResource<Map<String, String>> = try {
         val response = client.get(URL_GET_CURRENCIES) {
-        }.body<CurrencyResponse>()
-        when (response.currencies) {
+        }.body<Map<String, String>>()
+        when (response) {
             null -> ResponseResource.error(response)
             else -> ResponseResource.success(response)
         }
     } catch (e: Exception) {
+
         ResponseResource.error(
-            CurrencyResponse
-                (error = ApiError(4422,"Oops, Looks like something's wrong check your internet connection"))
+            mapOf("error" to "Oops, Looks like something's wrong check your internet connection")
         )
     }
 
 
     override suspend fun getLatestExchangeRates(): ResponseResource<ExchangeRateResponse> = try {
-        val response = client.get(URL_GET_RATES){
+        val response = client.get(URL_GET_RATES) {
             parameter("app_id", apikey)
         }.body<ExchangeRateResponse>()
-        when (response) {
+        when (response.rates) {
             null -> ResponseResource.error(response)
             else -> ResponseResource.success(response)
         }
-    }
-    catch (e: Exception) {
+    } catch (e: Exception) {
         ResponseResource.error(
-            ExchangeRateResponse
-                (error = ApiError(4422,"Oops, Looks like something's wrong check your internet connection"))
+            ExchangeRateResponse(
+            )
         )
     }
 

@@ -2,8 +2,7 @@ plugins {
     id(BuildPluginConfigs.androidApplication)
     id(BuildPluginConfigs.jetbrains)
     id(BuildPluginConfigs.ksp)
-    //  id("org.jetbrains.kotlin.plugin.serialization")
-
+    kotlin("plugin.serialization")
 }
 
 android {

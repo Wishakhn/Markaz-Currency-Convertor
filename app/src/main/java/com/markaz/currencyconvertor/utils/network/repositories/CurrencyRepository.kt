@@ -12,8 +12,8 @@ class CurrencyRepository(
 ) : ICurrencyConverterRespo {
     override suspend fun getCurrencies(): Flow<ResponseResource<CurrencyResponse>> = flow {
         when (val response = remote.getCurrencies()) {
-            is ResponseResource.Error -> emit(ResponseResource.error(response.errorMessage))
-            is ResponseResource.Success -> emit(ResponseResource.success(response.data))
+            is ResponseResource.Error -> emit(ResponseResource.error(CurrencyResponse(response.errorMessage)))
+            is ResponseResource.Success -> emit(ResponseResource.success(CurrencyResponse(response.data)))
         }
 
     }
