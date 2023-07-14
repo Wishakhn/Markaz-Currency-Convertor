@@ -1,4 +1,4 @@
-package com.markaz.currencyconvertor.presentation.multiconverter
+package com.markaz.currencyconvertor.presentation.converter
 
 import com.markaz.currencyconvertor.data.local.models.ExchangeRate
 import com.markaz.currencyconvertor.domain.models.CurrencyModel

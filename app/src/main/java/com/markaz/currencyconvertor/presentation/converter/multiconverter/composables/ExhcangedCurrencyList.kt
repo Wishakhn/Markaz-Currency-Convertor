@@ -1,4 +1,4 @@
-package com.markaz.currencyconvertor.presentation.multiconverter.composables
+package com.markaz.currencyconvertor.presentation.converter.multiconverter.composables
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,9 +10,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.markaz.currencyconvertor.presentation.multiconverter.CCEffect
-import com.markaz.currencyconvertor.presentation.multiconverter.CCEvent
-import com.markaz.currencyconvertor.presentation.multiconverter.CCStateModel
+import com.markaz.currencyconvertor.presentation.converter.CCEffect
+import com.markaz.currencyconvertor.presentation.converter.CCEvent
+import com.markaz.currencyconvertor.presentation.converter.CCStateModel
 import com.markaz.currencyconvertor.ui.composables.atoms.a_TextBodyLarge
 import com.markaz.currencyconvertor.ui.composables.atoms.a_TextDisplayMedium
 import com.markaz.currencyconvertor.utils.extenssions.collectAsState

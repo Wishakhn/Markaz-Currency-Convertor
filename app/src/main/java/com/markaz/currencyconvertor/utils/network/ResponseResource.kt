@@ -1,4 +1,4 @@
-package com.adopte.unelivraison.network.base
+package com.markaz.currencyconvertor.utils.network
 
 /**
  * Response resource

@@ -1,4 +1,4 @@
-package com.markaz.currencyconvertor.ui.theme.utils.network
+package com.markaz.currencyconvertor.utils.network
 
 import android.util.Log
 import io.ktor.client.*
