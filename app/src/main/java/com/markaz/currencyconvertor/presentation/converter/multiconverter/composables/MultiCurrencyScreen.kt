@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -51,6 +52,7 @@ fun MultiCurrencyScreen() = ConstraintLayout(
     val selectedCurrecny = processor.collectAsState { it.selectedCurrency }
     val isButtonEnabled = processor.collectAsState { it.enableButton }
     val isLoading = processor.collectAsState { it.isLoading }
+    val testButtonEnabled = viewModel.isButtonEnabled.collectAsState()
 
     viewModel.setEvent(CCEvent.RequestExchangeRates)
     viewModel.setEvent(CCEvent.RequestCurrencyRates)
@@ -104,7 +106,7 @@ fun MultiCurrencyScreen() = ConstraintLayout(
         }
     }
 
-    a_ButtonLarge(isEnabled = isButtonEnabled.value, modifier = Modifier.constrainAs(button) {
+    a_ButtonLarge(isEnabled = testButtonEnabled.value, modifier = Modifier.constrainAs(button) {
         linkTo(amount.start, parent.end)
         bottom.linkTo(parent.bottom)
     }, onButtonClick = {

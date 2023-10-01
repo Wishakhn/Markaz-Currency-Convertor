@@ -9,7 +9,11 @@ import com.markaz.currencyconvertor.utils.interfaces.IEffect
 import com.markaz.currencyconvertor.utils.interfaces.Intent
 import com.markaz.currencyconvertor.utils.network.ResponseResource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 
@@ -18,6 +22,10 @@ class CurrencyViewModel(
     private val exchangeUseCase: FetchExchangeRateUseCase
 ) : BaseViewModel<CCEvent, CCStateModel, CCEffect>() {
     override fun createInitialState(): CCStateModel = CCStateModel()
+
+    // Coroutines Flow
+   private var  _isButtonEnabled : MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isButtonEnabled : StateFlow<Boolean> =  _isButtonEnabled.asStateFlow()
     override fun handleStateEvents(
         event: CCEvent,
         effect: IEffect<CCEffect>
@@ -25,12 +33,15 @@ class CurrencyViewModel(
         return when (event) {
             is CCEvent.RequestCurrencyRates -> fetchCurrencies().thenNoAction()
             is CCEvent.RequestExchangeRates -> fetchExchangeRates().thenNoAction()
-            is CCEvent.EnableButton -> flowOf(
-                CurrencyStateReducer.UpdateButtonState(
-                    event.amount,
-                    event.isEnabled
+            is CCEvent.EnableButton -> {
+               _isButtonEnabled.update { true }
+                flowOf(
+                    CurrencyStateReducer.UpdateButtonState(
+                        event.amount,
+                        event.isEnabled
+                    )
                 )
-            )
+            }
 
             is CCEvent.UpdateCurrencyApiState -> flowOf(
                 CurrencyStateReducer.UpdateCurrencyApiState(
